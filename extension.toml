@@ -1,0 +1,10 @@
+id = "mcp-server-axiom"
+name = "Axiom MCP Server"
+description = "Model Context Protocol Server for Axiom"
+version = "0.0.1"
+schema_version = 1
+authors = ["Zed Industries <support@zed.dev>"]
+repository = "https://github.com/zed-extensions/mcp-server-axiom"
+
+[context_servers.mcp-server-axiom]
+name = "Axiom MCP Server"
