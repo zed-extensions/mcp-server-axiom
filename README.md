@@ -1,4 +1,4 @@
-# mcp-server-axiom
+# Axiom MCP Server
 
 A Zed extension for the [Axiom MCP server](https://github.com/axiomhq/mcp-server-axiom).
 
