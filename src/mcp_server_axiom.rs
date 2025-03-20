@@ -9,7 +9,7 @@ use zed_extension_api::{
 #[derive(Debug, Deserialize)]
 struct McpServerAxiomSettings {
     config_path: String,
-    org_id: String,
+    org_id: Option<String>,
     api_url: Option<String>,
 }
 
@@ -115,18 +115,21 @@ impl zed::Extension for McpServerAxiomExtension {
         let settings: McpServerAxiomSettings =
             serde_json::from_value(settings).map_err(|e| e.to_string())?;
 
+        let mut env = vec![(
+            "AXIOM_URL".into(),
+            settings
+                .api_url
+                .unwrap_or_else(|| "https://api.axiom.co".into()),
+        )];
+
+        if let Some(org_id) = settings.org_id {
+            env.push(("AXIOM_ORG_ID".into(), org_id));
+        }
+
         Ok(Command {
             command: self.context_server_binary_path(context_server_id)?,
             args: vec!["--config".into(), settings.config_path],
-            env: vec![
-                ("AXIOM_ORG_ID".into(), settings.org_id),
-                (
-                    "AXIOM_URL".into(),
-                    settings
-                        .api_url
-                        .unwrap_or_else(|| "https://api.axiom.co".into()),
-                ),
-            ],
+            env,
         })
     }
 }
