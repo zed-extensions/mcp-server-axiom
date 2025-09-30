@@ -41,7 +41,7 @@ impl McpServerAxiomExtension {
         let (platform, arch) = zed::current_platform();
         let version_dir = format!("mcp-server-axiom-{}", release.version);
         let binary_path = format!(
-            "{version_dir}/axiom-mcp{extension}",
+            "{version_dir}/mcp-server-axiom{extension}",
             extension = match platform {
                 zed::Os::Mac | zed::Os::Linux => "",
                 zed::Os::Windows => ".exe",
@@ -50,16 +50,16 @@ impl McpServerAxiomExtension {
 
         if !fs::metadata(&binary_path).map_or(false, |stat| stat.is_file()) {
             let asset_name = format!(
-                "axiom-mcp_{os}_{arch}.{extension}",
-                arch = match arch {
-                    zed::Architecture::Aarch64 => "arm64",
-                    zed::Architecture::X8664 => "x86_64",
-                    zed::Architecture::X86 => return Err("axiom-mcp not available for x86".into()),
-                },
+                "mcp-server-axiom_{os}_{arch}.{extension}",
                 os = match platform {
                     zed::Os::Mac => "Darwin",
                     zed::Os::Linux => "Linux",
                     zed::Os::Windows => "Windows",
+                },
+                arch = match arch {
+                    zed::Architecture::Aarch64 => "arm64",
+                    zed::Architecture::X8664 => "x86_64",
+                    zed::Architecture::X86 => return Err("axiom-mcp not available for x86".into()),
                 },
                 extension = match platform {
                     zed::Os::Mac | zed::Os::Linux => "tar.gz",
