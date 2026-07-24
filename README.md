@@ -1,5 +1,10 @@
 # Axiom MCP Server
 
+> [!WARNING]
+> **This extension is deprecated and no longer maintained.**
+>
+> The [Axiom MCP server](https://github.com/axiomhq/mcp-server-axiom) this extension wraps has been deprecated and archived by Axiom. Please use the official Axiom remote MCP server at [https://mcp.axiom.co](https://mcp.axiom.co/) instead.
+
 A Zed extension for the [Axiom MCP server](https://github.com/axiomhq/mcp-server-axiom).
 
 ## Configuration
